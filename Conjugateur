@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French Verb Master</title>
+    <!-- Premium Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- PAGE 1: EXPLORER -->
+        <section id="page-explorer" class="page active">
+            <header>
+                <h2>Verb Explorer</h2>
+            </header>
+
+            <div class="control-group">
+                <input type="text" id="verb-input" placeholder="Enter verb (e.g. parler)" value="parler">
+                <select id="tense-select">
+                    <option value="present">Présent</option>
+                    <option value="passe_compose">Passé Composé</option>
+                    <option value="imparfait">Imparfait</option>
+                    <option value="futur">Futur</option>
+                    <option value="conditionnel">Conditionnel</option>
+                    <option value="subjonctif">Subjonctif</option>
+                </select>
+            </div>
+
+            <div class="daisy-layout" style="display: flex; gap: 10px; flex: 1; align-items: center;">
+                <!-- Daisy Wheel moves here via JS or static HTML -->
+                <div id="daisy-wheel-container" style="flex: 1; aspect-ratio: 1; position: relative;">
+                    <!-- JS will inject petals here -->
+                    <div class="daisy-center"></div>
+                </div>
+
+                <div id="result-window"
+                    style="flex: 1; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 16px; min-height: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <div id="result-pronoun" style="font-size: 1.2em; opacity: 0.7;">Select</div>
+                    <div id="result-verb" style="font-size: 1.5em; font-weight: bold; margin: 5px 0;">a petal</div>
+                    <div id="result-explanation" style="font-size: 0.8em; color: #a4b0be; margin-top: 10px;">To see
+                        conjugation</div>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <button class="nav-btn" onclick="navigateTo('practice')">Go to Practice &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PAGE 2: PRACTICE -->
+        <section id="page-practice" class="page">
+            <header>
+                <h2>Practice Mode</h2>
+            </header>
+
+            <div class="control-group">
+                <input type="text" id="practice-current-verb" placeholder="Enter verb"
+                    style="flex: 1; font-weight: bold; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.3); color: white; padding: 5px;">
+                <select id="practice-tense-select">
+                    <option value="present">Présent</option>
+                    <option value="passe_compose">Passé Composé</option>
+                    <option value="imparfait">Imparfait</option>
+                    <option value="futur">Futur</option>
+                    <option value="conditionnel">Conditionnel</option>
+                    <option value="subjonctif">Subjonctif</option>
+                </select>
+            </div>
+
+            <div class="practice-arena"
+                style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div id="practice-pronoun" style="font-size: 2em; margin-bottom: 20px;">Je</div>
+                <input type="text" id="practice-input" placeholder="Type answer..."
+                    style="text-align: center; font-size: 1.5em; background: rgba(0,0,0,0.3);">
+                <div id="practice-feedback" style="min-height: 30px; margin-top: 20px; font-weight: bold;"></div>
+            </div>
+
+            <button class="btn-primary" id="btn-add-list" style="margin-bottom: 10px;">+ Add to My List</button>
+
+            <div class="nav-actions">
+                <button class="nav-btn" onclick="navigateTo('explorer')">&larr; Explorer</button>
+                <button class="nav-btn" onclick="navigateTo('list')">My List &rarr;</button>
+            </div>
+        </section>
+
+        <!-- PAGE 3: MY LIST -->
+        <section id="page-list" class="page">
+            <header>
+                <h2>My Personal List</h2>
+            </header>
+
+            <div style="margin-bottom: 20px;">
+                <select id="list-tense-select" style="width: 100%;">
+                    <option value="present">Présent</option>
+                    <option value="passe_compose">Passé Composé</option>
+                    <option value="imparfait">Imparfait</option>
+                    <option value="futur">Futur</option>
+                    <option value="conditionnel">Conditionnel</option>
+                    <option value="subjonctif">Subjonctif</option>
+                </select>
+            </div>
+
+            <div id="my-verb-list" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+                <!-- List items go here -->
+                <div style="text-align: center; opacity: 0.5; margin-top: 50px;">No verbs added yet.</div>
+            </div>
+
+            <div class="nav-actions">
+                <button class="nav-btn" onclick="navigateTo('practice')">&larr; Practice</button>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="js/conjugator.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
